@@ -84,19 +84,7 @@ module.exports = function (app) {
       
       const _id = req.body._id;
       
-      // Initialize project if it doesn't exist
-      if (!issues[project]) {
-        issues[project] = [];
-      }
-      
-      // Find the issue
-      const issue = issues[project].find(i => i._id === _id);
-      
-      if (!issue) {
-        return res.json({ error: 'could not update', _id });
-      }
-      
-      // Check if there are fields to update
+      // Check if there are fields to update (before validating _id)
       const updateFields = ['issue_title', 'issue_text', 'created_by', 'assigned_to', 'status_text', 'open'];
       const hasUpdates = updateFields.some(field => {
         if (req.body.hasOwnProperty(field)) {
@@ -111,6 +99,18 @@ module.exports = function (app) {
       
       if (!hasUpdates) {
         return res.json({ error: 'no update field(s) sent', _id });
+      }
+      
+      // Initialize project if it doesn't exist
+      if (!issues[project]) {
+        issues[project] = [];
+      }
+      
+      // Find the issue
+      const issue = issues[project].find(i => i._id === _id);
+      
+      if (!issue) {
+        return res.json({ error: 'could not update', _id });
       }
       
       // Update the issue
