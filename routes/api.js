@@ -98,7 +98,16 @@ module.exports = function (app) {
       
       // Check if there are fields to update
       const updateFields = ['issue_title', 'issue_text', 'created_by', 'assigned_to', 'status_text', 'open'];
-      const hasUpdates = updateFields.some(field => req.body[field] !== undefined && req.body[field] !== '');
+      const hasUpdates = updateFields.some(field => {
+        if (req.body.hasOwnProperty(field)) {
+          // Field exists in request body
+          if (field === 'open') {
+            return true; // open field is always valid if present
+          }
+          return req.body[field] !== undefined && req.body[field] !== '';
+        }
+        return false;
+      });
       
       if (!hasUpdates) {
         return res.json({ error: 'no update field(s) sent', _id });
@@ -106,10 +115,10 @@ module.exports = function (app) {
       
       // Update the issue
       updateFields.forEach(field => {
-        if (req.body[field] !== undefined && req.body[field] !== '') {
+        if (req.body.hasOwnProperty(field)) {
           if (field === 'open') {
             issue[field] = req.body[field] === 'true' || req.body[field] === true;
-          } else {
+          } else if (req.body[field] !== '') {
             issue[field] = req.body[field];
           }
         }
