@@ -1,0 +1,5 @@
+run = "npm start"
+language = "nodejs"
+
+[env]
+NODE_ENV = "test"
