@@ -1,5 +1,2 @@
-run = "npm start"
+run = "NODE_ENV=test npm start"
 language = "nodejs"
-
-[env]
-NODE_ENV = "test"
