@@ -12,7 +12,7 @@ suite('Functional Tests', function() {
   
   suite('POST /api/issues/{project} => object with issue data', function() {
     
-    test('Create an issue with every field', function(done) {
+    test('Create an issue with every field: POST request to /api/issues/{project}', function(done) {
       chai.request(server)
         .post('/api/issues/test')
         .send({
@@ -38,7 +38,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Create an issue with only required fields', function(done) {
+    test('Create an issue with only required fields: POST request to /api/issues/{project}', function(done) {
       chai.request(server)
         .post('/api/issues/test')
         .send({
@@ -62,7 +62,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Create an issue with missing required fields', function(done) {
+    test('Create an issue with missing required fields: POST request to /api/issues/{project}', function(done) {
       chai.request(server)
         .post('/api/issues/test')
         .send({
@@ -79,7 +79,7 @@ suite('Functional Tests', function() {
   
   suite('GET /api/issues/{project} => Array of objects with issue data', function() {
     
-    test('View issues on a project', function(done) {
+    test('View issues on a project: GET request to /api/issues/{project}', function(done) {
       chai.request(server)
         .get('/api/issues/test')
         .end(function(err, res){
@@ -98,7 +98,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('View issues on a project with one filter', function(done) {
+    test('View issues on a project with one filter: GET request to /api/issues/{project}', function(done) {
       chai.request(server)
         .get('/api/issues/test?open=true')
         .end(function(err, res){
@@ -111,7 +111,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('View issues on a project with multiple filters', function(done) {
+    test('View issues on a project with multiple filters: GET request to /api/issues/{project}', function(done) {
       chai.request(server)
         .get('/api/issues/test?open=true&created_by=Functional Test - Every field filled in')
         .end(function(err, res){
@@ -129,7 +129,7 @@ suite('Functional Tests', function() {
   
   suite('PUT /api/issues/{project} => text', function() {
     
-    test('Update one field on an issue', function(done) {
+    test('Update one field on an issue: PUT request to /api/issues/{project}', function(done) {
       chai.request(server)
         .put('/api/issues/test')
         .send({
@@ -144,7 +144,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Update multiple fields on an issue', function(done) {
+    test('Update multiple fields on an issue: PUT request to /api/issues/{project}', function(done) {
       chai.request(server)
         .put('/api/issues/test')
         .send({
@@ -160,7 +160,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Update an issue with missing _id', function(done) {
+    test('Update an issue with missing _id: PUT request to /api/issues/{project}', function(done) {
       chai.request(server)
         .put('/api/issues/test')
         .send({
@@ -173,7 +173,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Update an issue with no fields to update', function(done) {
+    test('Update an issue with no fields to update: PUT request to /api/issues/{project}', function(done) {
       chai.request(server)
         .put('/api/issues/test')
         .send({
@@ -187,7 +187,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Update an issue with an invalid _id', function(done) {
+    test('Update an issue with an invalid _id: PUT request to /api/issues/{project}', function(done) {
       chai.request(server)
         .put('/api/issues/test')
         .send({
@@ -206,7 +206,7 @@ suite('Functional Tests', function() {
   
   suite('DELETE /api/issues/{project} => text', function() {
     
-    test('Delete an issue', function(done) {
+    test('Delete an issue: DELETE request to /api/issues/{project}', function(done) {
       chai.request(server)
         .delete('/api/issues/test')
         .send({
@@ -220,7 +220,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Delete an issue with an invalid _id', function(done) {
+    test('Delete an issue with an invalid _id: DELETE request to /api/issues/{project}', function(done) {
       chai.request(server)
         .delete('/api/issues/test')
         .send({
@@ -234,7 +234,7 @@ suite('Functional Tests', function() {
         });
     });
     
-    test('Delete an issue with missing _id', function(done) {
+    test('Delete an issue with missing _id: DELETE request to /api/issues/{project}', function(done) {
       chai.request(server)
         .delete('/api/issues/test')
         .send({})
